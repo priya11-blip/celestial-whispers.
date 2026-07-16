@@ -547,3 +547,83 @@ justify-content:center;
 }
 
 }
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
+
+@media screen and (max-width:768px){
+
+header{
+    flex-direction:column;
+    align-items:center;
+    padding:20px;
+}
+
+.logo h1{
+    font-size:50px;
+    text-align:center;
+    line-height:1.1;
+}
+
+.logo p{
+    font-size:18px;
+    text-align:center;
+}
+
+nav{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    width:100%;
+    margin-top:20px;
+}
+
+nav a{
+    text-align:center;
+    padding:14px;
+}
+
+.hero{
+    padding:40px 20px;
+}
+
+.hero h2{
+    font-size:42px;
+}
+
+.hero p{
+    font-size:17px;
+}
+
+.dashboard{
+    grid-template-columns:1fr;
+    padding:20px;
+}
+
+.card{
+    padding:20px;
+}
+
+.buttons{
+    flex-direction:column;
+    align-items:center;
+}
+
+.btn{
+    width:90%;
+    text-align:center;
+}
+
+.moon{
+    display:none;
+}
+
+.cloud{
+    display:none;
+}
+
+.butterfly{
+    font-size:24px;
+}
+
+}
