@@ -1,549 +1,174 @@
-/* ===========================
-   GOOGLE FONTS
-=========================== */
+// ============================
+// LIVE DATE & TIME
+// ============================
 
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=Quicksand:wght@400;500;600&display=swap');
+function updateDateTime() {
+    const now = new Date();
 
-/* ===========================
-   RESET
-=========================== */
+    const dateOptions = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    };
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+    document.getElementById("date").innerHTML =
+        now.toLocaleDateString("en-US", dateOptions);
+
+    document.getElementById("clock").innerHTML =
+        now.toLocaleTimeString("en-US");
 }
 
-html{
-    scroll-behavior:smooth;
-}
+setInterval(updateDateTime, 1000);
+updateDateTime();
 
-body{
+// ============================
+// QUOTES OF THE DAY
+// ============================
 
-    font-family:'Quicksand',sans-serif;
+const quotes = [
 
-    background:linear-gradient(180deg,#F7F3FF,#EFE8FF,#FFF9FD);
+"Believe in your own magic. ✨",
 
-    color:#5A4770;
+"Small steps every day create beautiful journeys. 🌸",
 
-    overflow-x:hidden;
+"The moon still shines, even on cloudy nights. 🌙",
 
-    min-height:100vh;
+"You are growing beautifully, even when you can't see it. 💜",
 
-}
+"Every day is a fresh page waiting to be written. 📖",
 
-/* ===========================
-   STARS
-=========================== */
+"Your dreams deserve your courage. ⭐",
 
-.stars{
+"Happiness blooms from gratitude. 🌷",
 
-    position:fixed;
+"Be gentle with yourself today. 🤍",
 
-    width:100%;
+"You carry a universe within you. 🌌",
 
-    height:100%;
+"Collect moments, not worries. ☁️"
 
-    background-image:
-    radial-gradient(#fff 1px, transparent 1px),
-    radial-gradient(#E8C66A 1px, transparent 1px);
+];
 
-    background-size:120px 120px;
+function randomQuote(){
 
-    opacity:.35;
+const random=Math.floor(Math.random()*quotes.length);
 
-    animation:twinkle 8s infinite alternate;
-
-    z-index:-5;
-
-}
-
-@keyframes twinkle{
-
-from{opacity:.2;}
-
-to{opacity:.6;}
+document.getElementById("quote").innerHTML=quotes[random];
 
 }
 
-/* ===========================
-   MOON
-=========================== */
+randomQuote();
 
-.moon{
+// ============================
+// SAVE MOOD
+// ============================
 
-position:absolute;
+const mood=document.getElementById("mood");
 
-top:60px;
+if(localStorage.getItem("todayMood")){
 
-right:80px;
-
-width:120px;
-
-height:120px;
-
-border-radius:50%;
-
-background:#FFF8D5;
-
-box-shadow:
-0 0 40px #FFF8D5,
-0 0 80px #FFF2B2;
+mood.value=localStorage.getItem("todayMood");
 
 }
 
-/* ===========================
-   CLOUDS
-=========================== */
+mood.addEventListener("change",function(){
 
-.cloud{
+localStorage.setItem("todayMood",mood.value);
 
-position:absolute;
+});
 
-width:170px;
+// ============================
+// WEATHER
+// ============================
 
-height:60px;
+// Replace YOUR_API_KEY with your OpenWeatherMap API key
+const apiKey = "YOUR_API_KEY";
 
-background:white;
+// Example city
+const city = "Delhi";
 
-border-radius:50px;
+async function getWeather(){
 
-opacity:.45;
+if(apiKey==="YOUR_API_KEY"){
 
-}
+document.getElementById("weather").innerHTML=
+"🌤 Add your OpenWeatherMap API Key";
 
-.cloud::before{
-
-content:"";
-
-position:absolute;
-
-width:80px;
-
-height:80px;
-
-background:white;
-
-border-radius:50%;
-
-top:-35px;
-
-left:25px;
+return;
 
 }
 
-.cloud::after{
+try{
 
-content:"";
+const response=await fetch(
+`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+);
 
-position:absolute;
+const data=await response.json();
 
-width:70px;
-
-height:70px;
-
-background:white;
-
-border-radius:50%;
-
-top:-25px;
-
-right:20px;
+document.getElementById("weather").innerHTML=`
+🌡 ${data.main.temp}°C <br>
+☁ ${data.weather[0].main}<br>
+💧 ${data.main.humidity}%`;
 
 }
 
-.cloud1{
+catch{
 
-top:120px;
-
-left:-200px;
-
-animation:cloudMove 40s linear infinite;
-
-}
-
-.cloud2{
-
-top:220px;
-
-left:-300px;
-
-animation:cloudMove 55s linear infinite;
-
-}
-
-@keyframes cloudMove{
-
-100%{
-
-transform:translateX(1700px);
+document.getElementById("weather").innerHTML=
+"Weather unavailable";
 
 }
 
 }
 
-/* ===========================
-   BUTTERFLIES
-=========================== */
+getWeather();
 
-.butterfly{
+// ============================
+// GREETING
+// ============================
 
-position:absolute;
+const hour=new Date().getHours();
 
-font-size:34px;
+let greeting="Welcome Back 🌙";
 
-animation:fly 14s linear infinite;
+if(hour<12){
 
-}
-
-.b1{
-
-top:200px;
-
-left:-100px;
+greeting="Good Morning ☀️";
 
 }
 
-.b2{
+else if(hour<18){
 
-top:450px;
-
-left:-150px;
-
-animation-delay:4s;
+greeting="Good Afternoon 🌸";
 
 }
 
-.b3{
+else{
 
-top:650px;
-
-left:-120px;
-
-animation-delay:8s;
+greeting="Good Evening 🌙";
 
 }
 
-@keyframes fly{
+document.querySelector(".hero h2").innerHTML=greeting;
 
-0%{
+// ============================
+// BUTTON RIPPLE EFFECT
+// ============================
 
-transform:translateX(-100px) translateY(0);
+document.querySelectorAll(".btn").forEach(button=>{
 
-}
+button.addEventListener("mouseenter",()=>{
 
-25%{
+button.style.transform="scale(1.05)";
 
-transform:translateX(350px) translateY(-30px);
+});
 
-}
+button.addEventListener("mouseleave",()=>{
 
-50%{
+button.style.transform="scale(1)";
 
-transform:translateX(700px) translateY(20px);
+});
 
-}
-
-75%{
-
-transform:translateX(1000px) translateY(-25px);
-
-}
-
-100%{
-
-transform:translateX(1500px);
-
-}
-
-}
-
-/* ===========================
-   HEADER
-=========================== */
-
-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:30px 8%;
-
-}
-
-.logo h1{
-
-font-family:'Great Vibes',cursive;
-
-font-size:65px;
-
-color:#6D4FB6;
-
-}
-
-.logo p{
-
-font-family:'Cormorant Garamond',serif;
-
-font-size:20px;
-
-color:#7A6997;
-
-margin-top:8px;
-
-}
-
-/* ===========================
-   NAVIGATION
-=========================== */
-
-nav{
-
-display:flex;
-
-gap:15px;
-
-flex-wrap:wrap;
-
-}
-
-nav a{
-
-text-decoration:none;
-
-padding:12px 20px;
-
-background:rgba(255,255,255,.35);
-
-backdrop-filter:blur(12px);
-
-border-radius:30px;
-
-color:#5A4770;
-
-font-weight:600;
-
-transition:.4s;
-
-border:1px solid rgba(255,255,255,.5);
-
-}
-
-nav a:hover{
-
-background:#B388EB;
-
-color:white;
-
-transform:translateY(-4px);
-
-}
-
-/* ===========================
-   HERO
-=========================== */
-
-.hero{
-
-text-align:center;
-
-padding:70px 20px;
-
-}
-
-.hero h2{
-
-font-family:'Cormorant Garamond',serif;
-
-font-size:55px;
-
-color:#5B3E96;
-
-margin-bottom:20px;
-
-}
-
-.hero p{
-
-max-width:700px;
-
-margin:auto;
-
-font-size:20px;
-
-line-height:1.8;
-
-}
-
-/* ===========================
-   DASHBOARD
-=========================== */
-
-.dashboard{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-gap:25px;
-
-padding:50px 8%;
-
-}
-
-.card{
-
-background:rgba(255,255,255,.35);
-
-backdrop-filter:blur(20px);
-
-border-radius:25px;
-
-padding:30px;
-
-box-shadow:0 10px 30px rgba(120,100,180,.12);
-
-transition:.4s;
-
-border:1px solid rgba(255,255,255,.5);
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-}
-
-.card h3{
-
-font-family:'Cormorant Garamond',serif;
-
-font-size:30px;
-
-margin-bottom:18px;
-
-color:#6846A7;
-
-}
-
-.card p{
-
-font-size:18px;
-
-}
-
-select{
-
-width:100%;
-
-padding:12px;
-
-border:none;
-
-border-radius:15px;
-
-font-size:17px;
-
-background:#F7F2FF;
-
-}
-
-/* ===========================
-   BUTTONS
-=========================== */
-
-.buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-flex-wrap:wrap;
-
-padding-bottom:80px;
-
-}
-
-.btn{
-
-text-decoration:none;
-
-padding:16px 30px;
-
-border-radius:35px;
-
-background:#B388EB;
-
-color:white;
-
-font-weight:600;
-
-transition:.4s;
-
-box-shadow:0 10px 25px rgba(179,136,235,.4);
-
-}
-
-.btn:hover{
-
-background:#9B6CE5;
-
-transform:translateY(-5px);
-
-}
-
-/* ===========================
-   FOOTER
-=========================== */
-
-footer{
-
-padding:30px;
-
-text-align:center;
-
-font-size:18px;
-
-color:#7A6997;
-
-}
-
-/* ===========================
-   MOBILE
-=========================== */
-
-@media(max-width:900px){
-
-header{
-
-flex-direction:column;
-
-gap:25px;
-
-}
-
-.logo h1{
-
-font-size:52px;
-
-}
-
-.hero h2{
-
-font-size:42px;
-
-}
-
-nav{
-
-justify-content:center;
-
-}
-
-}
+});
