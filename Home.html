@@ -176,3 +176,552 @@ Made with 💜 by Celestial Whisper
 
 </body>
 </html>
+/* ===========================
+   GOOGLE FONTS
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=Quicksand:wght@400;500;600&display=swap');
+
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Quicksand',sans-serif;
+
+    background:linear-gradient(180deg,#F7F3FF,#EFE8FF,#FFF9FD);
+
+    color:#5A4770;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+}
+
+/* ===========================
+   STARS
+=========================== */
+
+.stars{
+
+    position:fixed;
+
+    width:100%;
+
+    height:100%;
+
+    background-image:
+    radial-gradient(#fff 1px, transparent 1px),
+    radial-gradient(#E8C66A 1px, transparent 1px);
+
+    background-size:120px 120px;
+
+    opacity:.35;
+
+    animation:twinkle 8s infinite alternate;
+
+    z-index:-5;
+
+}
+
+@keyframes twinkle{
+
+from{opacity:.2;}
+
+to{opacity:.6;}
+
+}
+
+/* ===========================
+   MOON
+=========================== */
+
+.moon{
+
+position:absolute;
+
+top:60px;
+
+right:80px;
+
+width:120px;
+
+height:120px;
+
+border-radius:50%;
+
+background:#FFF8D5;
+
+box-shadow:
+0 0 40px #FFF8D5,
+0 0 80px #FFF2B2;
+
+}
+
+/* ===========================
+   CLOUDS
+=========================== */
+
+.cloud{
+
+position:absolute;
+
+width:170px;
+
+height:60px;
+
+background:white;
+
+border-radius:50px;
+
+opacity:.45;
+
+}
+
+.cloud::before{
+
+content:"";
+
+position:absolute;
+
+width:80px;
+
+height:80px;
+
+background:white;
+
+border-radius:50%;
+
+top:-35px;
+
+left:25px;
+
+}
+
+.cloud::after{
+
+content:"";
+
+position:absolute;
+
+width:70px;
+
+height:70px;
+
+background:white;
+
+border-radius:50%;
+
+top:-25px;
+
+right:20px;
+
+}
+
+.cloud1{
+
+top:120px;
+
+left:-200px;
+
+animation:cloudMove 40s linear infinite;
+
+}
+
+.cloud2{
+
+top:220px;
+
+left:-300px;
+
+animation:cloudMove 55s linear infinite;
+
+}
+
+@keyframes cloudMove{
+
+100%{
+
+transform:translateX(1700px);
+
+}
+
+}
+
+/* ===========================
+   BUTTERFLIES
+=========================== */
+
+.butterfly{
+
+position:absolute;
+
+font-size:34px;
+
+animation:fly 14s linear infinite;
+
+}
+
+.b1{
+
+top:200px;
+
+left:-100px;
+
+}
+
+.b2{
+
+top:450px;
+
+left:-150px;
+
+animation-delay:4s;
+
+}
+
+.b3{
+
+top:650px;
+
+left:-120px;
+
+animation-delay:8s;
+
+}
+
+@keyframes fly{
+
+0%{
+
+transform:translateX(-100px) translateY(0);
+
+}
+
+25%{
+
+transform:translateX(350px) translateY(-30px);
+
+}
+
+50%{
+
+transform:translateX(700px) translateY(20px);
+
+}
+
+75%{
+
+transform:translateX(1000px) translateY(-25px);
+
+}
+
+100%{
+
+transform:translateX(1500px);
+
+}
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:30px 8%;
+
+}
+
+.logo h1{
+
+font-family:'Great Vibes',cursive;
+
+font-size:65px;
+
+color:#6D4FB6;
+
+}
+
+.logo p{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:20px;
+
+color:#7A6997;
+
+margin-top:8px;
+
+}
+
+/* ===========================
+   NAVIGATION
+=========================== */
+
+nav{
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+padding:12px 20px;
+
+background:rgba(255,255,255,.35);
+
+backdrop-filter:blur(12px);
+
+border-radius:30px;
+
+color:#5A4770;
+
+font-weight:600;
+
+transition:.4s;
+
+border:1px solid rgba(255,255,255,.5);
+
+}
+
+nav a:hover{
+
+background:#B388EB;
+
+color:white;
+
+transform:translateY(-4px);
+
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+
+text-align:center;
+
+padding:70px 20px;
+
+}
+
+.hero h2{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:55px;
+
+color:#5B3E96;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+max-width:700px;
+
+margin:auto;
+
+font-size:20px;
+
+line-height:1.8;
+
+}
+
+/* ===========================
+   DASHBOARD
+=========================== */
+
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+padding:50px 8%;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.35);
+
+backdrop-filter:blur(20px);
+
+border-radius:25px;
+
+padding:30px;
+
+box-shadow:0 10px 30px rgba(120,100,180,.12);
+
+transition:.4s;
+
+border:1px solid rgba(255,255,255,.5);
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card h3{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:30px;
+
+margin-bottom:18px;
+
+color:#6846A7;
+
+}
+
+.card p{
+
+font-size:18px;
+
+}
+
+select{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:17px;
+
+background:#F7F2FF;
+
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+padding-bottom:80px;
+
+}
+
+.btn{
+
+text-decoration:none;
+
+padding:16px 30px;
+
+border-radius:35px;
+
+background:#B388EB;
+
+color:white;
+
+font-weight:600;
+
+transition:.4s;
+
+box-shadow:0 10px 25px rgba(179,136,235,.4);
+
+}
+
+.btn:hover{
+
+background:#9B6CE5;
+
+transform:translateY(-5px);
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+padding:30px;
+
+text-align:center;
+
+font-size:18px;
+
+color:#7A6997;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:900px){
+
+header{
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+.logo h1{
+
+font-size:52px;
+
+}
+
+.hero h2{
+
+font-size:42px;
+
+}
+
+nav{
+
+justify-content:center;
+
+}
+
+}
